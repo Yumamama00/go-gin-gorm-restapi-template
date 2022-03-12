@@ -47,7 +47,7 @@ func NewBook(bookDto *PublicBook) (*Book, error) {
 // PublicBook 公開用のDTO
 type PublicBook struct {
 	BookID    string    `json:"bookID"`
-	Title     string    `json:"Title"`
-	Content   string    `json:"Content"`
-	UpdatedAt time.Time `json:"UpdatedAt"`
+	Title     string    `json:"title"`
+	Content   string    `json:"content"`
+	UpdatedAt time.Time `json:"updatedAt"`
 }
