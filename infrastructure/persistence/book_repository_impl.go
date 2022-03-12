@@ -127,14 +127,17 @@ func (br *BookRepositoryImpl) CheckDuplicateTitle(ctx context.Context, title str
 	if ID == "" {
 		err = db.First(book, "title = ?", title).Error
 	} else {
-		err = db.First(book, "title = ? AND id <> ?", title, ID).Error
+		err = db.First(book, "title = ? AND book_id <> ?", title, ID).Error
 	}
 
 	if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			return true, nil
 		}
-		return false, err
+		return false, &infrastructure.RdbRuntimeError{
+			ErrMsg:        "[infrastructure.persistence.CheckDuplicateTitle] failed to check duplicate title",
+			OriginalError: err,
+		}
 	}
 
 	return false, nil

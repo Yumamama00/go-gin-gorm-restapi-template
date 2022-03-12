@@ -1,4 +1,4 @@
-package tools
+package main
 
 import (
 	"github.com/Yumamama00/go-gin-gorm-restapi-sample/domain/model/book"
@@ -9,7 +9,7 @@ import (
 
 // RDBのauto migrateを行う
 func main() {
-	if err := godotenv.Load("../../.dev_env"); err != nil {
+	if err := godotenv.Load("../.dev_env"); err != nil {
 		panic("Can not loading .dev_env" + err.Error())
 	}
 
